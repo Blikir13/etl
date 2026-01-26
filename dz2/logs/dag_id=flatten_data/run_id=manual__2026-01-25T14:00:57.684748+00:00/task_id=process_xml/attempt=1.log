@@ -1,0 +1,77 @@
+[2026-01-25T14:00:59.697+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: flatten_data.process_xml manual__2026-01-25T14:00:57.684748+00:00 [queued]>
+[2026-01-25T14:00:59.704+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: flatten_data.process_xml manual__2026-01-25T14:00:57.684748+00:00 [queued]>
+[2026-01-25T14:00:59.704+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-25T14:00:59.716+0000] {taskinstance.py:2191} INFO - Executing <Task(PostgresOperator): process_xml> on 2026-01-25 14:00:57.684748+00:00
+[2026-01-25T14:00:59.723+0000] {standard_task_runner.py:60} INFO - Started process 198 to run task
+[2026-01-25T14:00:59.731+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'flatten_data', 'process_xml', 'manual__2026-01-25T14:00:57.684748+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/flatten_dag.py', '--cfg-path', '/tmp/tmppm9z7z80']
+[2026-01-25T14:00:59.735+0000] {standard_task_runner.py:88} INFO - Job 3: Subtask process_xml
+[2026-01-25T14:00:59.759+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.11/site-packages/***/settings.py:194 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2026-01-25T14:00:59.815+0000] {task_command.py:423} INFO - Running <TaskInstance: flatten_data.process_xml manual__2026-01-25T14:00:57.684748+00:00 [running]> on host dd5b6a24436d
+[2026-01-25T14:00:59.914+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='student' AIRFLOW_CTX_DAG_ID='flatten_data' AIRFLOW_CTX_TASK_ID='process_xml' AIRFLOW_CTX_EXECUTION_DATE='2026-01-25T14:00:57.684748+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-25T14:00:57.684748+00:00'
+[2026-01-25T14:00:59.915+0000] {sql.py:276} INFO - Executing: 
+        TRUNCATE TABLE flat_foods;
+        
+        INSERT INTO flat_foods (
+            food_name, manufacturer, serving_size,
+            calories_total, calories_fat,
+            total_fat, saturated_fat, cholesterol, sodium,
+            carb, fiber, protein,
+            vitamin_a, vitamin_c, calcium, iron
+        )
+        SELECT 
+            (xpath('//food/name/text()', xml_data::xml))[1]::text as food_name,
+            (xpath('//food/mfr/text()', xml_data::xml))[1]::text as manufacturer,
+            (xpath('//food/serving/text()', xml_data::xml))[1]::text as serving_size,
+            NULLIF((xpath('//food/calories/@total', xml_data::xml))[1]::text, '')::int as calories_total,
+            NULLIF((xpath('//food/calories/@fat', xml_data::xml))[1]::text, '')::int as calories_fat,
+            (xpath('//food/total-fat/text()', xml_data::xml))[1]::text as total_fat,
+            (xpath('//food/saturated-fat/text()', xml_data::xml))[1]::text as saturated_fat,
+            (xpath('//food/cholesterol/text()', xml_data::xml))[1]::text as cholesterol,
+            (xpath('//food/sodium/text()', xml_data::xml))[1]::text as sodium,
+            (xpath('//food/carb/text()', xml_data::xml))[1]::text as carb,
+            (xpath('//food/fiber/text()', xml_data::xml))[1]::text as fiber,
+            (xpath('//food/protein/text()', xml_data::xml))[1]::text as protein,
+            (xpath('//food/vitamins/a/text()', xml_data::xml))[1]::text as vitamin_a,
+            (xpath('//food/vitamins/c/text()', xml_data::xml))[1]::text as vitamin_c,
+            (xpath('//food/minerals/ca/text()', xml_data::xml))[1]::text as calcium,
+            (xpath('//food/minerals/fe/text()', xml_data::xml))[1]::text as iron
+        FROM raw_xml;
+        
+        
+[2026-01-25T14:00:59.917+0000] {crypto.py:82} WARNING - empty cryptography key - values will not be stored encrypted.
+[2026-01-25T14:00:59.918+0000] {base.py:83} INFO - Using connection ID 'postgres_data' for task execution.
+[2026-01-25T14:00:59.924+0000] {base.py:83} INFO - Using connection ID 'postgres_data' for task execution.
+[2026-01-25T14:00:59.929+0000] {sql.py:450} INFO - Running statement: 
+        TRUNCATE TABLE flat_foods;
+        
+        INSERT INTO flat_foods (
+            food_name, manufacturer, serving_size,
+            calories_total, calories_fat,
+            total_fat, saturated_fat, cholesterol, sodium,
+            carb, fiber, protein,
+            vitamin_a, vitamin_c, calcium, iron
+        )
+        SELECT 
+            (xpath('//food/name/text()', xml_data::xml))[1]::text as food_name,
+            (xpath('//food/mfr/text()', xml_data::xml))[1]::text as manufacturer,
+            (xpath('//food/serving/text()', xml_data::xml))[1]::text as serving_size,
+            NULLIF((xpath('//food/calories/@total', xml_data::xml))[1]::text, '')::int as calories_total,
+            NULLIF((xpath('//food/calories/@fat', xml_data::xml))[1]::text, '')::int as calories_fat,
+            (xpath('//food/total-fat/text()', xml_data::xml))[1]::text as total_fat,
+            (xpath('//food/saturated-fat/text()', xml_data::xml))[1]::text as saturated_fat,
+            (xpath('//food/cholesterol/text()', xml_data::xml))[1]::text as cholesterol,
+            (xpath('//food/sodium/text()', xml_data::xml))[1]::text as sodium,
+            (xpath('//food/carb/text()', xml_data::xml))[1]::text as carb,
+            (xpath('//food/fiber/text()', xml_data::xml))[1]::text as fiber,
+            (xpath('//food/protein/text()', xml_data::xml))[1]::text as protein,
+            (xpath('//food/vitamins/a/text()', xml_data::xml))[1]::text as vitamin_a,
+            (xpath('//food/vitamins/c/text()', xml_data::xml))[1]::text as vitamin_c,
+            (xpath('//food/minerals/ca/text()', xml_data::xml))[1]::text as calcium,
+            (xpath('//food/minerals/fe/text()', xml_data::xml))[1]::text as iron
+        FROM raw_xml;
+        
+        , parameters: None
+[2026-01-25T14:00:59.965+0000] {sql.py:459} INFO - Rows affected: 1
+[2026-01-25T14:01:00.003+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=flatten_data, task_id=process_xml, execution_date=20260125T140057, start_date=20260125T140059, end_date=20260125T140100
+[2026-01-25T14:01:00.078+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-25T14:01:00.116+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
