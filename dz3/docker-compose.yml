@@ -1,0 +1,54 @@
+version: "3.9"
+
+services:
+  postgres_airflow:
+    image: postgres:13
+    container_name: postgres_airflow
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_airflow_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U airflow"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  airflow:
+    image: apache/airflow:2.8.1-python3.11
+    container_name: airflow
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres_airflow/airflow
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW_CONN_POSTGRES_DATA: postgresql://etl_user:etl_pass@postgres_data/etl_db
+      AIRFLOW__WEBSERVER__WEB_SERVER_PORT: 8080
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./data:/opt/airflow/data
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ./output:/opt/airflow/output
+    depends_on:
+      postgres_airflow:
+        condition: service_healthy
+    command: >
+      bash -c "
+        until airflow db check 2>/dev/null; do
+          echo 'Waiting for Airflow database...';
+          sleep 5;
+        done;
+        airflow db init;
+        airflow users create --username admin --firstname Admin --lastname User --role Admin --email admin@example.com --password admin;
+        airflow webserver &
+        airflow scheduler
+      "
+
+volumes:
+  postgres_airflow_data:
