@@ -1,0 +1,88 @@
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  postgres:
+    image: postgres:16
+    container_name: pg
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: etl
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  airflow:
+    image: apache/airflow:2.9.0
+    container_name: airflow
+    restart: unless-stopped
+    depends_on:
+      - mongo
+      - postgres
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+      AIRFLOW__CORE__EXECUTOR: "SequentialExecutor"
+      AIRFLOW__WEBSERVER__SECRET_KEY: "supersecretkey"
+
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: "postgresql+psycopg2://etl:etl@postgres:5432/etl_final_warehouse"
+
+      MONGO_URI: "mongodb://mongo:27017"
+      MONGO_DB: "logistics_final"
+
+      # Подключение к PostgreSQL для DAG-ов - ПРАВИЛЬНЫЙ ФОРМАТ для автосоздания connection
+      AIRFLOW_CONN_POSTGRES_ANALYTICS: "postgresql://etl:etl@postgres:5432/etl_final_warehouse"
+
+      _PIP_ADDITIONAL_REQUIREMENTS: "pymongo pandas psycopg2-binary apache-airflow-providers-postgres"
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+    ports:
+      - "8080:8080"
+    command: >
+      bash -c "airflow db init &&
+               (airflow connections delete 'postgres_analytics' || true) &&
+               airflow connections add 'postgres_analytics' --conn-uri 'postgresql://etl:etl@postgres:5432/etl_final_warehouse' &&
+               (airflow users create --username admin --firstname Admin --lastname User --role Admin --email admin@example.com --password admin || airflow users update --username admin --password admin) &&
+               airflow webserver"
+
+  airflow-scheduler:
+    image: apache/airflow:2.9.0
+    container_name: airflow_scheduler
+    restart: unless-stopped
+    depends_on:
+      - postgres
+      - airflow
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+      AIRFLOW__CORE__EXECUTOR: "SequentialExecutor"
+      AIRFLOW__WEBSERVER__SECRET_KEY: "supersecretkey"
+
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: "postgresql+psycopg2://etl:etl@postgres:5432/etl_final_warehouse"
+
+      MONGO_URI: "mongodb://mongo:27017"
+      MONGO_DB: "logistics_final"
+
+      AIRFLOW_CONN_POSTGRES_ANALYTICS: "postgresql://etl:etl@postgres:5432/etl_final_warehouse"
+
+      _PIP_ADDITIONAL_REQUIREMENTS: "pymongo pandas psycopg2-binary apache-airflow-providers-postgres"
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+    command: scheduler
+
+volumes:
+  mongo-data:
+  postgres-data:

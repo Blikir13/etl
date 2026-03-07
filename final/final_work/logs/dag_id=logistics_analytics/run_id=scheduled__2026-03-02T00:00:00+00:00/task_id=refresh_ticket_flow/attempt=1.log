@@ -1,0 +1,47 @@
+[2026-03-03T17:42:27.592+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-03T17:42:27.684+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: logistics_analytics.refresh_ticket_flow scheduled__2026-03-02T00:00:00+00:00 [queued]>
+[2026-03-03T17:42:27.689+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: logistics_analytics.refresh_ticket_flow scheduled__2026-03-02T00:00:00+00:00 [queued]>
+[2026-03-03T17:42:27.689+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 2
+[2026-03-03T17:42:27.694+0000] {taskinstance.py:2327} INFO - Executing <Task(PostgresOperator): refresh_ticket_flow> on 2026-03-02 00:00:00+00:00
+[2026-03-03T17:42:27.703+0000] {standard_task_runner.py:63} INFO - Started process 187 to run task
+[2026-03-03T17:42:27.705+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'logistics_analytics', 'refresh_ticket_flow', 'scheduled__2026-03-02T00:00:00+00:00', '--job-id', '11', '--raw', '--subdir', 'DAGS_FOLDER/logistics_analytics_dag.py', '--cfg-path', '/tmp/tmpbxyx4spk']
+[2026-03-03T17:42:27.707+0000] {standard_task_runner.py:91} INFO - Job 11: Subtask refresh_ticket_flow
+[2026-03-03T17:42:27.751+0000] {task_command.py:426} INFO - Running <TaskInstance: logistics_analytics.refresh_ticket_flow scheduled__2026-03-02T00:00:00+00:00 [running]> on host 0123928c5be5
+[2026-03-03T17:42:27.869+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='xxx' AIRFLOW_CTX_DAG_ID='logistics_analytics' AIRFLOW_CTX_TASK_ID='refresh_ticket_flow' AIRFLOW_CTX_EXECUTION_DATE='2026-03-02T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-02T00:00:00+00:00'
+[2026-03-03T17:42:27.870+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-03T17:42:27.879+0000] {sql.py:276} INFO - Executing: 
+        DELETE FROM log_marts.ticket_flow_daily WHERE snapshot_date = '2026-03-02'::date;
+        INSERT INTO log_marts.ticket_flow_daily (
+            snapshot_date, issue_type, status, tickets_count, avg_resolution_time_hours,
+            open_tickets_count, reopened_tickets_count)
+        SELECT '2026-03-02'::date, dt.issue_type, dt.status, COUNT(*),
+            AVG(CASE WHEN dt.resolution_time_seconds IS NOT NULL THEN dt.resolution_time_seconds / 3600.0 END)::NUMERIC(12, 2),
+            SUM(CASE WHEN dt.status IN ('open', 'in_progress') THEN 1 ELSE 0 END),
+            SUM(CASE WHEN dt.status = 'closed' AND EXISTS (SELECT 1 FROM jsonb_array_elements(dt.messages) AS m(elem) WHERE m.elem->>'sender' = 'user' AND (m.elem->>'message') ILIKE '%again%') THEN 1 ELSE 0 END)
+        FROM log_raw.delivery_tickets_raw dt
+        WHERE dt.created_at::date <= '2026-03-02'::date
+        GROUP BY dt.issue_type, dt.status;
+        
+[2026-03-03T17:42:27.880+0000] {crypto.py:82} WARNING - empty cryptography key - values will not be stored encrypted.
+[2026-03-03T17:42:27.880+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:42:27.922+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:42:27.927+0000] {sql.py:457} INFO - Running statement: 
+        DELETE FROM log_marts.ticket_flow_daily WHERE snapshot_date = '2026-03-02'::date;
+        INSERT INTO log_marts.ticket_flow_daily (
+            snapshot_date, issue_type, status, tickets_count, avg_resolution_time_hours,
+            open_tickets_count, reopened_tickets_count)
+        SELECT '2026-03-02'::date, dt.issue_type, dt.status, COUNT(*),
+            AVG(CASE WHEN dt.resolution_time_seconds IS NOT NULL THEN dt.resolution_time_seconds / 3600.0 END)::NUMERIC(12, 2),
+            SUM(CASE WHEN dt.status IN ('open', 'in_progress') THEN 1 ELSE 0 END),
+            SUM(CASE WHEN dt.status = 'closed' AND EXISTS (SELECT 1 FROM jsonb_array_elements(dt.messages) AS m(elem) WHERE m.elem->>'sender' = 'user' AND (m.elem->>'message') ILIKE '%again%') THEN 1 ELSE 0 END)
+        FROM log_raw.delivery_tickets_raw dt
+        WHERE dt.created_at::date <= '2026-03-02'::date
+        GROUP BY dt.issue_type, dt.status;
+        , parameters: None
+[2026-03-03T17:42:27.931+0000] {sql.py:466} INFO - Rows affected: 20
+[2026-03-03T17:42:27.935+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py:407 AirflowProviderDeprecationWarning: Call to deprecated method _make_common_data_structure. (The `_make_serializable` method is deprecated and support will be removed in a future version of the common.sql provider. Please update the DbApiHook's provider to a version based on common.sql >= 1.9.1.)
+[2026-03-03T17:42:27.935+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-03T17:42:27.944+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=logistics_analytics, task_id=refresh_ticket_flow, execution_date=20260302T000000, start_date=20260303T174227, end_date=20260303T174227
+[2026-03-03T17:42:27.970+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-03-03T17:42:27.990+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-03T17:42:27.990+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

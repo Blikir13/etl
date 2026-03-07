@@ -1,0 +1,1019 @@
+[2026-03-03T17:37:57.902+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-03T17:37:57.920+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: logistics_sync.ingest_routes scheduled__2026-03-03T16:00:00+00:00 [queued]>
+[2026-03-03T17:37:57.924+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: logistics_sync.ingest_routes scheduled__2026-03-03T16:00:00+00:00 [queued]>
+[2026-03-03T17:37:57.924+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 2
+[2026-03-03T17:37:57.929+0000] {taskinstance.py:2327} INFO - Executing <Task(PythonOperator): ingest_routes> on 2026-03-03 16:00:00+00:00
+[2026-03-03T17:37:57.939+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'logistics_sync', 'ingest_routes', 'scheduled__2026-03-03T16:00:00+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/logistics_sync_dag.py', '--cfg-path', '/tmp/tmp7k3fgx3i']
+[2026-03-03T17:37:57.941+0000] {standard_task_runner.py:91} INFO - Job 6: Subtask ingest_routes
+[2026-03-03T17:37:57.941+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=101) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-03-03T17:37:57.941+0000] {standard_task_runner.py:63} INFO - Started process 110 to run task
+[2026-03-03T17:37:57.988+0000] {task_command.py:426} INFO - Running <TaskInstance: logistics_sync.ingest_routes scheduled__2026-03-03T16:00:00+00:00 [running]> on host 0123928c5be5
+[2026-03-03T17:37:58.042+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='xxx' AIRFLOW_CTX_DAG_ID='logistics_sync' AIRFLOW_CTX_TASK_ID='ingest_routes' AIRFLOW_CTX_EXECUTION_DATE='2026-03-03T16:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-03T16:00:00+00:00'
+[2026-03-03T17:37:58.043+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-03T17:37:58.075+0000] {crypto.py:82} WARNING - empty cryptography key - values will not be stored encrypted.
+[2026-03-03T17:37:58.075+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.079+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_1', 'last_updated': datetime.datetime(2026, 3, 1, 15, 20, 7, 580256, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_327", "prod_315", "prod_176", "prod_388", "prod_349", "prod_112", "prod_375"]'}
+[2026-03-03T17:37:58.080+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.081+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.084+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_2', 'last_updated': datetime.datetime(2026, 2, 26, 15, 19, 16, 274279, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_353", "prod_276", "prod_254", "prod_402", "prod_357", "prod_409", "prod_42", "prod_492"]'}
+[2026-03-03T17:37:58.085+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.085+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.088+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_3', 'last_updated': datetime.datetime(2026, 2, 26, 15, 1, 4, 960160, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_471", "prod_352", "prod_209", "prod_464", "prod_21"]'}
+[2026-03-03T17:37:58.089+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.090+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.093+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_4', 'last_updated': datetime.datetime(2026, 2, 26, 18, 39, 37, 219242, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_93", "prod_398", "prod_121", "prod_288", "prod_197", "prod_411", "prod_206", "prod_363", "prod_109"]'}
+[2026-03-03T17:37:58.094+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.095+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.098+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_5', 'last_updated': datetime.datetime(2026, 2, 26, 9, 59, 42, 507051, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_383", "prod_171", "prod_48", "prod_366", "prod_192", "prod_312", "prod_243", "prod_161"]'}
+[2026-03-03T17:37:58.098+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.099+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.102+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_6', 'last_updated': datetime.datetime(2026, 3, 1, 13, 49, 0, 423277, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_150", "prod_131", "prod_31", "prod_205", "prod_97", "prod_112"]'}
+[2026-03-03T17:37:58.103+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.103+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.106+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_7', 'last_updated': datetime.datetime(2026, 2, 28, 15, 59, 1, 622398, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_451", "prod_348", "prod_106", "prod_239", "prod_441", "prod_431"]'}
+[2026-03-03T17:37:58.107+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.108+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.111+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_8', 'last_updated': datetime.datetime(2026, 2, 27, 21, 29, 2, 47975, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_376", "prod_287", "prod_245", "prod_500"]'}
+[2026-03-03T17:37:58.111+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.112+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.115+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_9', 'last_updated': datetime.datetime(2026, 2, 27, 17, 9, 48, 336574, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_160", "prod_190", "prod_171", "prod_391", "prod_410", "prod_103", "prod_154", "prod_117"]'}
+[2026-03-03T17:37:58.115+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.116+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.119+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_10', 'last_updated': datetime.datetime(2026, 2, 28, 6, 50, 29, 854709, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_17", "prod_55", "prod_97", "prod_459", "prod_475", "prod_74", "prod_223", "prod_406"]'}
+[2026-03-03T17:37:58.120+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.120+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.123+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_11', 'last_updated': datetime.datetime(2026, 3, 2, 9, 50, 9, 898835, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_223", "prod_185", "prod_344", "prod_206", "prod_2", "prod_333", "prod_332", "prod_91"]'}
+[2026-03-03T17:37:58.124+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.125+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.127+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_12', 'last_updated': datetime.datetime(2026, 3, 3, 0, 19, 50, 613920, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_213", "prod_254", "prod_248", "prod_277", "prod_169", "prod_116", "prod_313", "prod_308"]'}
+[2026-03-03T17:37:58.128+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.128+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.131+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_13', 'last_updated': datetime.datetime(2026, 2, 25, 22, 15, 41, 575016, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_441", "prod_47", "prod_355", "prod_239", "prod_43", "prod_496", "prod_335", "prod_35", "prod_325"]'}
+[2026-03-03T17:37:58.132+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.132+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.136+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_14', 'last_updated': datetime.datetime(2026, 3, 3, 14, 52, 32, 43939, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_129", "prod_476", "prod_37", "prod_343"]'}
+[2026-03-03T17:37:58.136+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.137+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.140+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_15', 'last_updated': datetime.datetime(2026, 3, 2, 6, 25, 9, 559505, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_301", "prod_151", "prod_344", "prod_220", "prod_172", "prod_461"]'}
+[2026-03-03T17:37:58.140+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.141+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.144+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_16', 'last_updated': datetime.datetime(2026, 2, 25, 6, 49, 1, 223178, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_2", "prod_276", "prod_32"]'}
+[2026-03-03T17:37:58.144+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.145+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.148+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_17', 'last_updated': datetime.datetime(2026, 3, 1, 13, 59, 9, 308761, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_449", "prod_447", "prod_336"]'}
+[2026-03-03T17:37:58.149+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.149+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.152+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_18', 'last_updated': datetime.datetime(2026, 2, 27, 18, 30, 17, 974654, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_323", "prod_83", "prod_90"]'}
+[2026-03-03T17:37:58.153+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.153+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.156+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_19', 'last_updated': datetime.datetime(2026, 3, 2, 13, 42, 55, 141826, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_170", "prod_252", "prod_463", "prod_275", "prod_415", "prod_323", "prod_127", "prod_18", "prod_159"]'}
+[2026-03-03T17:37:58.157+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.157+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.160+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_20', 'last_updated': datetime.datetime(2026, 3, 1, 22, 17, 3, 303284, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_469", "prod_428", "prod_287", "prod_386", "prod_135", "prod_270", "prod_232", "prod_217", "prod_270", "prod_83"]'}
+[2026-03-03T17:37:58.161+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.161+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.164+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_21', 'last_updated': datetime.datetime(2026, 2, 27, 16, 39, 53, 396366, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_444", "prod_427", "prod_115", "prod_458", "prod_89"]'}
+[2026-03-03T17:37:58.165+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.166+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.169+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_22', 'last_updated': datetime.datetime(2026, 3, 1, 17, 54, 34, 814400, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_231", "prod_100", "prod_114", "prod_411"]'}
+[2026-03-03T17:37:58.170+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.170+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.174+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_23', 'last_updated': datetime.datetime(2026, 2, 24, 17, 41, 30, 1004, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_35", "prod_450", "prod_315", "prod_282", "prod_349", "prod_96", "prod_16", "prod_180", "prod_351", "prod_436"]'}
+[2026-03-03T17:37:58.174+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.175+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.178+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_24', 'last_updated': datetime.datetime(2026, 2, 26, 7, 23, 53, 185956, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_192", "prod_457", "prod_214", "prod_468", "prod_363", "prod_151", "prod_290", "prod_103", "prod_193"]'}
+[2026-03-03T17:37:58.178+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.179+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.182+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_25', 'last_updated': datetime.datetime(2026, 2, 27, 0, 58, 29, 981894, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_8", "prod_310", "prod_293", "prod_312", "prod_319", "prod_141", "prod_31", "prod_365"]'}
+[2026-03-03T17:37:58.182+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.183+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.186+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_26', 'last_updated': datetime.datetime(2026, 2, 25, 2, 31, 19, 849172, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_350", "prod_201", "prod_280", "prod_186", "prod_262", "prod_471", "prod_490", "prod_251", "prod_200"]'}
+[2026-03-03T17:37:58.186+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.187+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.190+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_27', 'last_updated': datetime.datetime(2026, 3, 2, 22, 54, 38, 912638, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_412", "prod_264", "prod_100", "prod_95"]'}
+[2026-03-03T17:37:58.190+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.191+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.194+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_28', 'last_updated': datetime.datetime(2026, 2, 28, 11, 1, 32, 621871, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_341", "prod_344", "prod_362", "prod_235", "prod_210", "prod_211", "prod_209", "prod_433", "prod_88", "prod_195"]'}
+[2026-03-03T17:37:58.195+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.195+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.198+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_29', 'last_updated': datetime.datetime(2026, 2, 26, 0, 8, 15, 54941, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_300", "prod_385", "prod_187", "prod_236", "prod_325", "prod_201", "prod_188"]'}
+[2026-03-03T17:37:58.201+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.201+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.205+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_30', 'last_updated': datetime.datetime(2026, 2, 28, 22, 9, 30, 336568, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_445", "prod_48", "prod_138", "prod_102", "prod_212", "prod_287", "prod_59", "prod_444", "prod_337", "prod_424"]'}
+[2026-03-03T17:37:58.205+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.206+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.209+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_31', 'last_updated': datetime.datetime(2026, 2, 27, 11, 16, 29, 258943, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_401", "prod_226", "prod_121", "prod_383"]'}
+[2026-03-03T17:37:58.210+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.210+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.213+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_32', 'last_updated': datetime.datetime(2026, 2, 27, 4, 34, 16, 449768, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_165", "prod_444", "prod_83", "prod_204", "prod_67", "prod_182", "prod_82", "prod_360", "prod_74", "prod_235"]'}
+[2026-03-03T17:37:58.214+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.215+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.218+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_33', 'last_updated': datetime.datetime(2026, 3, 2, 8, 17, 15, 79517, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_232", "prod_397", "prod_28", "prod_294", "prod_468", "prod_421", "prod_199", "prod_360", "prod_221", "prod_386"]'}
+[2026-03-03T17:37:58.219+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.220+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.223+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_34', 'last_updated': datetime.datetime(2026, 2, 26, 20, 43, 5, 789977, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_470", "prod_97", "prod_192", "prod_4", "prod_370", "prod_102"]'}
+[2026-03-03T17:37:58.224+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.224+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.228+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_35', 'last_updated': datetime.datetime(2026, 2, 26, 23, 32, 11, 660894, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_236", "prod_482", "prod_152", "prod_336", "prod_483"]'}
+[2026-03-03T17:37:58.228+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.229+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.232+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_36', 'last_updated': datetime.datetime(2026, 3, 1, 20, 45, 21, 908445, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_4", "prod_61", "prod_470", "prod_59", "prod_155", "prod_115", "prod_243", "prod_159", "prod_162", "prod_182"]'}
+[2026-03-03T17:37:58.233+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.234+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.237+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_37', 'last_updated': datetime.datetime(2026, 3, 1, 18, 56, 9, 976665, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_94", "prod_431", "prod_399", "prod_403", "prod_95", "prod_79", "prod_81", "prod_438", "prod_192"]'}
+[2026-03-03T17:37:58.238+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.239+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.243+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_38', 'last_updated': datetime.datetime(2026, 2, 25, 18, 47, 18, 464799, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_204", "prod_465", "prod_354", "prod_236", "prod_135", "prod_492", "prod_258"]'}
+[2026-03-03T17:37:58.244+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.244+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.248+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_39', 'last_updated': datetime.datetime(2026, 3, 1, 6, 1, 41, 279985, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_51", "prod_268", "prod_493", "prod_475", "prod_137", "prod_17", "prod_16", "prod_108"]'}
+[2026-03-03T17:37:58.248+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.249+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.253+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_40', 'last_updated': datetime.datetime(2026, 3, 1, 5, 26, 20, 896375, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_24", "prod_204", "prod_211", "prod_455"]'}
+[2026-03-03T17:37:58.254+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.254+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.258+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_41', 'last_updated': datetime.datetime(2026, 3, 2, 5, 16, 22, 785646, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_310", "prod_480", "prod_186", "prod_242", "prod_164"]'}
+[2026-03-03T17:37:58.258+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.259+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.262+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_42', 'last_updated': datetime.datetime(2026, 3, 3, 7, 10, 33, 935885, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_433", "prod_266", "prod_168", "prod_262", "prod_435"]'}
+[2026-03-03T17:37:58.263+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.263+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.266+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_43', 'last_updated': datetime.datetime(2026, 3, 1, 23, 43, 6, 16345, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_21", "prod_79", "prod_418", "prod_323", "prod_201", "prod_412"]'}
+[2026-03-03T17:37:58.267+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.268+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.271+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_44', 'last_updated': datetime.datetime(2026, 3, 2, 13, 7, 59, 180491, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_87", "prod_170", "prod_470", "prod_192", "prod_378", "prod_307", "prod_99", "prod_498"]'}
+[2026-03-03T17:37:58.272+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.272+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.276+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_45', 'last_updated': datetime.datetime(2026, 3, 3, 14, 16, 8, 761784, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_170", "prod_281", "prod_309", "prod_11", "prod_275", "prod_497", "prod_269", "prod_316", "prod_451", "prod_324"]'}
+[2026-03-03T17:37:58.277+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.277+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.281+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_46', 'last_updated': datetime.datetime(2026, 2, 25, 10, 16, 52, 730544, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_178", "prod_451", "prod_500", "prod_264", "prod_469", "prod_189", "prod_56", "prod_139"]'}
+[2026-03-03T17:37:58.281+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.282+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.285+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_47', 'last_updated': datetime.datetime(2026, 2, 25, 9, 57, 25, 384573, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_148", "prod_477", "prod_79", "prod_365"]'}
+[2026-03-03T17:37:58.286+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.287+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.290+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_48', 'last_updated': datetime.datetime(2026, 2, 25, 4, 50, 1, 111785, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_289", "prod_332", "prod_481", "prod_370"]'}
+[2026-03-03T17:37:58.291+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.291+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.294+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_49', 'last_updated': datetime.datetime(2026, 2, 25, 1, 53, 3, 378295, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_124", "prod_380", "prod_184", "prod_230", "prod_38"]'}
+[2026-03-03T17:37:58.295+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.296+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.299+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_50', 'last_updated': datetime.datetime(2026, 3, 2, 23, 54, 50, 399273, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_143", "prod_373", "prod_282", "prod_6", "prod_399", "prod_421", "prod_422"]'}
+[2026-03-03T17:37:58.299+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.300+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.303+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_51', 'last_updated': datetime.datetime(2026, 2, 27, 5, 38, 48, 774489, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_415", "prod_376", "prod_94", "prod_33"]'}
+[2026-03-03T17:37:58.304+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.304+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.307+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_52', 'last_updated': datetime.datetime(2026, 2, 28, 21, 35, 34, 807865, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_480", "prod_69", "prod_116", "prod_167"]'}
+[2026-03-03T17:37:58.308+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.309+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.312+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_53', 'last_updated': datetime.datetime(2026, 2, 25, 3, 53, 46, 295489, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_272", "prod_460", "prod_436", "prod_171", "prod_195"]'}
+[2026-03-03T17:37:58.312+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.313+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.316+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_54', 'last_updated': datetime.datetime(2026, 3, 1, 15, 21, 33, 504242, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_456", "prod_103", "prod_46", "prod_59", "prod_237", "prod_285", "prod_467", "prod_454", "prod_62"]'}
+[2026-03-03T17:37:58.317+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.317+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.320+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_55', 'last_updated': datetime.datetime(2026, 2, 26, 14, 46, 28, 666910, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_112", "prod_123", "prod_287", "prod_246", "prod_89", "prod_354"]'}
+[2026-03-03T17:37:58.321+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.322+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.325+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_56', 'last_updated': datetime.datetime(2026, 3, 2, 12, 42, 33, 68802, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_249", "prod_7", "prod_481", "prod_231", "prod_499"]'}
+[2026-03-03T17:37:58.325+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.326+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.329+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_57', 'last_updated': datetime.datetime(2026, 3, 1, 2, 21, 46, 778439, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_442", "prod_348", "prod_232", "prod_225", "prod_363", "prod_455", "prod_364", "prod_469"]'}
+[2026-03-03T17:37:58.329+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.330+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.333+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_58', 'last_updated': datetime.datetime(2026, 2, 25, 19, 53, 4, 189085, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_84", "prod_452", "prod_15", "prod_268", "prod_172", "prod_436", "prod_472", "prod_191"]'}
+[2026-03-03T17:37:58.333+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.334+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.337+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_59', 'last_updated': datetime.datetime(2026, 2, 26, 10, 46, 17, 789847, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_297", "prod_42", "prod_361", "prod_474", "prod_199", "prod_301", "prod_95"]'}
+[2026-03-03T17:37:58.338+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.338+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.341+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_60', 'last_updated': datetime.datetime(2026, 3, 3, 14, 56, 33, 255785, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_110", "prod_411", "prod_78", "prod_489", "prod_272"]'}
+[2026-03-03T17:37:58.342+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.343+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.346+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_61', 'last_updated': datetime.datetime(2026, 3, 3, 5, 49, 31, 920375, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_6", "prod_202", "prod_316", "prod_464", "prod_80", "prod_449", "prod_152", "prod_165", "prod_60"]'}
+[2026-03-03T17:37:58.347+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.347+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.351+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_62', 'last_updated': datetime.datetime(2026, 2, 28, 22, 12, 38, 128357, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_215", "prod_1", "prod_427", "prod_87", "prod_193", "prod_270", "prod_218", "prod_256", "prod_331", "prod_181"]'}
+[2026-03-03T17:37:58.351+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.352+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.355+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_63', 'last_updated': datetime.datetime(2026, 2, 27, 20, 23, 54, 517240, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_235", "prod_393", "prod_122", "prod_183", "prod_245", "prod_32", "prod_298", "prod_360"]'}
+[2026-03-03T17:37:58.356+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.356+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.359+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_64', 'last_updated': datetime.datetime(2026, 2, 26, 16, 49, 31, 305909, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_125", "prod_316", "prod_205", "prod_221", "prod_206", "prod_120", "prod_409", "prod_201", "prod_148"]'}
+[2026-03-03T17:37:58.360+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.360+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.363+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_65', 'last_updated': datetime.datetime(2026, 3, 2, 3, 3, 42, 720776, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_274", "prod_470", "prod_450", "prod_233", "prod_144", "prod_237"]'}
+[2026-03-03T17:37:58.364+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.364+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.367+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_66', 'last_updated': datetime.datetime(2026, 3, 3, 10, 51, 14, 936870, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_173", "prod_414", "prod_288", "prod_222", "prod_119"]'}
+[2026-03-03T17:37:58.368+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.368+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.371+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_67', 'last_updated': datetime.datetime(2026, 2, 26, 13, 1, 16, 831269, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_338", "prod_80", "prod_316", "prod_177", "prod_23", "prod_294"]'}
+[2026-03-03T17:37:58.372+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.372+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.375+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_68', 'last_updated': datetime.datetime(2026, 2, 26, 8, 15, 11, 125863, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_496", "prod_279", "prod_185", "prod_184", "prod_450"]'}
+[2026-03-03T17:37:58.376+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.377+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.380+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_69', 'last_updated': datetime.datetime(2026, 3, 3, 15, 31, 43, 215420, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_370", "prod_149", "prod_183", "prod_440", "prod_403", "prod_199", "prod_207", "prod_30"]'}
+[2026-03-03T17:37:58.380+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.381+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.384+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_70', 'last_updated': datetime.datetime(2026, 2, 26, 11, 58, 18, 581556, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_482", "prod_494", "prod_362", "prod_177", "prod_330"]'}
+[2026-03-03T17:37:58.385+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.385+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.391+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_71', 'last_updated': datetime.datetime(2026, 2, 28, 23, 38, 35, 918102, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_162", "prod_198", "prod_393"]'}
+[2026-03-03T17:37:58.392+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.392+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.395+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_72', 'last_updated': datetime.datetime(2026, 2, 25, 21, 56, 38, 774315, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_284", "prod_287", "prod_382", "prod_438", "prod_371", "prod_239"]'}
+[2026-03-03T17:37:58.396+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.397+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.400+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_73', 'last_updated': datetime.datetime(2026, 3, 3, 8, 51, 14, 954134, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_260", "prod_382", "prod_73"]'}
+[2026-03-03T17:37:58.401+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.402+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.405+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_74', 'last_updated': datetime.datetime(2026, 3, 2, 4, 8, 40, 982367, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_290", "prod_111", "prod_226", "prod_493", "prod_398", "prod_498", "prod_340", "prod_112"]'}
+[2026-03-03T17:37:58.406+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.407+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.410+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_75', 'last_updated': datetime.datetime(2026, 3, 3, 15, 49, 10, 372440, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_357", "prod_455", "prod_493", "prod_31", "prod_205", "prod_124", "prod_222", "prod_249", "prod_442", "prod_84"]'}
+[2026-03-03T17:37:58.411+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.411+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.415+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_76', 'last_updated': datetime.datetime(2026, 3, 3, 0, 35, 51, 276898, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_125", "prod_23", "prod_192", "prod_70", "prod_379", "prod_149", "prod_279", "prod_95", "prod_209", "prod_46"]'}
+[2026-03-03T17:37:58.416+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.416+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.420+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_77', 'last_updated': datetime.datetime(2026, 2, 27, 11, 48, 21, 171452, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_443", "prod_365", "prod_280", "prod_347"]'}
+[2026-03-03T17:37:58.422+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.423+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.427+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_78', 'last_updated': datetime.datetime(2026, 3, 1, 20, 24, 21, 659917, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_405", "prod_205", "prod_51"]'}
+[2026-03-03T17:37:58.428+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.429+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.433+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_79', 'last_updated': datetime.datetime(2026, 2, 26, 11, 17, 10, 489036, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_93", "prod_129", "prod_237", "prod_278", "prod_419", "prod_393"]'}
+[2026-03-03T17:37:58.434+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.434+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.439+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_80', 'last_updated': datetime.datetime(2026, 2, 26, 13, 36, 33, 714692, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_226", "prod_446", "prod_49", "prod_383", "prod_266", "prod_124"]'}
+[2026-03-03T17:37:58.440+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.441+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.444+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_81', 'last_updated': datetime.datetime(2026, 2, 27, 20, 33, 38, 303071, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_312", "prod_315", "prod_267", "prod_187"]'}
+[2026-03-03T17:37:58.445+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.445+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.449+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_82', 'last_updated': datetime.datetime(2026, 3, 1, 12, 25, 50, 627068, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_256", "prod_264", "prod_334", "prod_54", "prod_180", "prod_443"]'}
+[2026-03-03T17:37:58.450+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.451+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.456+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_83', 'last_updated': datetime.datetime(2026, 3, 3, 2, 24, 5, 339116, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_317", "prod_275", "prod_92", "prod_459", "prod_486", "prod_85", "prod_406", "prod_46"]'}
+[2026-03-03T17:37:58.456+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.457+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.461+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_84', 'last_updated': datetime.datetime(2026, 2, 26, 10, 12, 39, 727636, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_58", "prod_26", "prod_403", "prod_11", "prod_225", "prod_137", "prod_284", "prod_450"]'}
+[2026-03-03T17:37:58.461+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.462+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.465+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_85', 'last_updated': datetime.datetime(2026, 2, 28, 12, 45, 39, 255273, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_462", "prod_427", "prod_268", "prod_295", "prod_175", "prod_128"]'}
+[2026-03-03T17:37:58.466+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.467+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.470+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_86', 'last_updated': datetime.datetime(2026, 2, 28, 13, 33, 45, 126175, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_466", "prod_238", "prod_251", "prod_49"]'}
+[2026-03-03T17:37:58.471+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.472+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.475+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_87', 'last_updated': datetime.datetime(2026, 3, 2, 18, 29, 5, 146636, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_171", "prod_127", "prod_465", "prod_334", "prod_470", "prod_2", "prod_144"]'}
+[2026-03-03T17:37:58.476+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.477+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.480+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_88', 'last_updated': datetime.datetime(2026, 2, 28, 10, 31, 30, 439286, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_426", "prod_245", "prod_369"]'}
+[2026-03-03T17:37:58.481+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.481+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.484+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_89', 'last_updated': datetime.datetime(2026, 2, 28, 4, 43, 46, 94249, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_291", "prod_77", "prod_53"]'}
+[2026-03-03T17:37:58.485+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.486+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.489+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_90', 'last_updated': datetime.datetime(2026, 3, 2, 2, 13, 23, 109089, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_377", "prod_429", "prod_229"]'}
+[2026-03-03T17:37:58.489+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.490+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.493+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_91', 'last_updated': datetime.datetime(2026, 2, 24, 22, 27, 27, 430199, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_126", "prod_232", "prod_400", "prod_38", "prod_485", "prod_400"]'}
+[2026-03-03T17:37:58.494+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.495+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.499+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_92', 'last_updated': datetime.datetime(2026, 3, 2, 3, 51, 8, 204551, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_108", "prod_489", "prod_413", "prod_402", "prod_306", "prod_137", "prod_442", "prod_287", "prod_188"]'}
+[2026-03-03T17:37:58.499+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.500+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.504+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_93', 'last_updated': datetime.datetime(2026, 3, 2, 0, 39, 28, 364382, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_338", "prod_307", "prod_195"]'}
+[2026-03-03T17:37:58.504+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.505+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.511+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_94', 'last_updated': datetime.datetime(2026, 2, 25, 21, 13, 49, 716304, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_236", "prod_344", "prod_182", "prod_478", "prod_262", "prod_194", "prod_57", "prod_36", "prod_3"]'}
+[2026-03-03T17:37:58.512+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.515+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.519+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_95', 'last_updated': datetime.datetime(2026, 2, 27, 6, 4, 41, 793854, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_255", "prod_488", "prod_356", "prod_3", "prod_58"]'}
+[2026-03-03T17:37:58.520+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.520+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.524+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_96', 'last_updated': datetime.datetime(2026, 2, 27, 19, 32, 45, 310135, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_232", "prod_143", "prod_135", "prod_218"]'}
+[2026-03-03T17:37:58.525+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.526+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.529+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_97', 'last_updated': datetime.datetime(2026, 3, 1, 7, 57, 12, 431632, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_315", "prod_117", "prod_85", "prod_43", "prod_37", "prod_76"]'}
+[2026-03-03T17:37:58.530+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.530+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.535+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_98', 'last_updated': datetime.datetime(2026, 2, 26, 4, 30, 7, 888279, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_336", "prod_368", "prod_337", "prod_286", "prod_331", "prod_323", "prod_98"]'}
+[2026-03-03T17:37:58.536+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.537+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.541+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_99', 'last_updated': datetime.datetime(2026, 3, 3, 14, 34, 32, 237988, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_356", "prod_12", "prod_64", "prod_95", "prod_242", "prod_72", "prod_166", "prod_215", "prod_229", "prod_190"]'}
+[2026-03-03T17:37:58.542+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.542+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.546+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_100', 'last_updated': datetime.datetime(2026, 2, 25, 12, 59, 21, 371374, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_10", "prod_52", "prod_467", "prod_333", "prod_431"]'}
+[2026-03-03T17:37:58.547+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.547+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.551+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_101', 'last_updated': datetime.datetime(2026, 2, 25, 5, 20, 57, 433578, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_308", "prod_476", "prod_447", "prod_355", "prod_454", "prod_477", "prod_33", "prod_358"]'}
+[2026-03-03T17:37:58.552+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.552+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.556+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_102', 'last_updated': datetime.datetime(2026, 2, 25, 9, 8, 13, 855105, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_369", "prod_484", "prod_178", "prod_169"]'}
+[2026-03-03T17:37:58.557+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.558+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.562+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_103', 'last_updated': datetime.datetime(2026, 3, 1, 17, 39, 22, 578802, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_90", "prod_49", "prod_114"]'}
+[2026-03-03T17:37:58.563+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.564+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.568+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_104', 'last_updated': datetime.datetime(2026, 2, 27, 14, 59, 48, 56605, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_130", "prod_202", "prod_89", "prod_185", "prod_267", "prod_306", "prod_43", "prod_158", "prod_455", "prod_28"]'}
+[2026-03-03T17:37:58.569+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.569+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.574+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_105', 'last_updated': datetime.datetime(2026, 2, 27, 23, 42, 19, 424195, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_166", "prod_307", "prod_316", "prod_351", "prod_291", "prod_236", "prod_63"]'}
+[2026-03-03T17:37:58.576+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.577+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.581+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_106', 'last_updated': datetime.datetime(2026, 2, 28, 8, 9, 10, 767406, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_178", "prod_339", "prod_385", "prod_175", "prod_467", "prod_215", "prod_263"]'}
+[2026-03-03T17:37:58.581+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.582+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.586+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_107', 'last_updated': datetime.datetime(2026, 2, 25, 19, 25, 29, 332582, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_238", "prod_388", "prod_229", "prod_370", "prod_316", "prod_41", "prod_409", "prod_500", "prod_52"]'}
+[2026-03-03T17:37:58.587+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.588+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.592+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_108', 'last_updated': datetime.datetime(2026, 2, 26, 16, 58, 1, 833770, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_478", "prod_198", "prod_86", "prod_326", "prod_264", "prod_3", "prod_351", "prod_13", "prod_425"]'}
+[2026-03-03T17:37:58.593+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.594+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.598+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_109', 'last_updated': datetime.datetime(2026, 2, 26, 7, 16, 34, 489618, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_82", "prod_203", "prod_433", "prod_443", "prod_84", "prod_411", "prod_50"]'}
+[2026-03-03T17:37:58.600+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.607+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.622+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_110', 'last_updated': datetime.datetime(2026, 2, 27, 4, 29, 22, 512109, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_353", "prod_18", "prod_451", "prod_351", "prod_477"]'}
+[2026-03-03T17:37:58.629+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.637+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.648+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_111', 'last_updated': datetime.datetime(2026, 3, 2, 16, 17, 9, 896217, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_188", "prod_153", "prod_229", "prod_35", "prod_367", "prod_467", "prod_203", "prod_425", "prod_54", "prod_296"]'}
+[2026-03-03T17:37:58.649+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.650+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.654+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_112', 'last_updated': datetime.datetime(2026, 2, 27, 8, 50, 31, 911531, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_250", "prod_169", "prod_282", "prod_411", "prod_496", "prod_304", "prod_155", "prod_247", "prod_57"]'}
+[2026-03-03T17:37:58.659+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.663+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.669+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_113', 'last_updated': datetime.datetime(2026, 2, 28, 13, 52, 44, 806398, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_462", "prod_390", "prod_489", "prod_23"]'}
+[2026-03-03T17:37:58.670+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.671+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.675+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_114', 'last_updated': datetime.datetime(2026, 3, 2, 18, 27, 50, 25110, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_322", "prod_177", "prod_294", "prod_73", "prod_428", "prod_114", "prod_477", "prod_78", "prod_176"]'}
+[2026-03-03T17:37:58.676+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.677+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.680+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_115', 'last_updated': datetime.datetime(2026, 3, 1, 23, 26, 41, 259096, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_229", "prod_159", "prod_465"]'}
+[2026-03-03T17:37:58.681+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.681+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.684+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_116', 'last_updated': datetime.datetime(2026, 2, 28, 16, 48, 52, 598388, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_468", "prod_418", "prod_200", "prod_500", "prod_358", "prod_266"]'}
+[2026-03-03T17:37:58.685+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.686+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.689+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_117', 'last_updated': datetime.datetime(2026, 2, 26, 18, 16, 45, 694327, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_47", "prod_374", "prod_125", "prod_157", "prod_472"]'}
+[2026-03-03T17:37:58.689+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.690+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.693+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_118', 'last_updated': datetime.datetime(2026, 3, 1, 20, 29, 37, 141438, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_181", "prod_385", "prod_384", "prod_120", "prod_207", "prod_432", "prod_409"]'}
+[2026-03-03T17:37:58.694+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.695+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.698+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_119', 'last_updated': datetime.datetime(2026, 3, 3, 6, 3, 17, 596292, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_380", "prod_405", "prod_107", "prod_32", "prod_474", "prod_244", "prod_52", "prod_7", "prod_49", "prod_165"]'}
+[2026-03-03T17:37:58.699+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.700+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.703+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_120', 'last_updated': datetime.datetime(2026, 3, 3, 7, 20, 31, 270335, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_212", "prod_387", "prod_436", "prod_123", "prod_439"]'}
+[2026-03-03T17:37:58.704+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.705+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.709+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_121', 'last_updated': datetime.datetime(2026, 2, 25, 15, 19, 5, 334291, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_356", "prod_392", "prod_497", "prod_54", "prod_151", "prod_452", "prod_323", "prod_414", "prod_462"]'}
+[2026-03-03T17:37:58.709+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.710+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.716+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_122', 'last_updated': datetime.datetime(2026, 2, 26, 14, 18, 40, 781540, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_485", "prod_213", "prod_339", "prod_451", "prod_382", "prod_401", "prod_215", "prod_244", "prod_384"]'}
+[2026-03-03T17:37:58.718+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.720+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.730+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_123', 'last_updated': datetime.datetime(2026, 2, 27, 7, 17, 21, 193176, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_221", "prod_385", "prod_37", "prod_188", "prod_480", "prod_116", "prod_141", "prod_181", "prod_88"]'}
+[2026-03-03T17:37:58.731+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.732+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.736+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_124', 'last_updated': datetime.datetime(2026, 2, 24, 22, 19, 11, 385080, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_263", "prod_65", "prod_475", "prod_187", "prod_240", "prod_59", "prod_101", "prod_241", "prod_179"]'}
+[2026-03-03T17:37:58.738+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.739+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.744+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_125', 'last_updated': datetime.datetime(2026, 2, 26, 16, 8, 49, 949913, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_28", "prod_484", "prod_434", "prod_83", "prod_305", "prod_164", "prod_158", "prod_478"]'}
+[2026-03-03T17:37:58.745+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.746+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.754+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_126', 'last_updated': datetime.datetime(2026, 2, 27, 5, 42, 23, 400605, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_54", "prod_238", "prod_160", "prod_23", "prod_32", "prod_202", "prod_429", "prod_2", "prod_231", "prod_224"]'}
+[2026-03-03T17:37:58.755+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.756+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.760+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_127', 'last_updated': datetime.datetime(2026, 2, 25, 19, 18, 57, 236663, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_57", "prod_166", "prod_365", "prod_488", "prod_150", "prod_453", "prod_364", "prod_310", "prod_122"]'}
+[2026-03-03T17:37:58.761+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.761+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.766+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_128', 'last_updated': datetime.datetime(2026, 2, 27, 17, 39, 19, 403748, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_314", "prod_413", "prod_147"]'}
+[2026-03-03T17:37:58.767+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.768+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.772+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_129', 'last_updated': datetime.datetime(2026, 3, 1, 18, 4, 33, 383985, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_311", "prod_409", "prod_47", "prod_157"]'}
+[2026-03-03T17:37:58.774+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.775+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.782+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_130', 'last_updated': datetime.datetime(2026, 2, 25, 18, 6, 57, 468476, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_484", "prod_287", "prod_465", "prod_466", "prod_236", "prod_427"]'}
+[2026-03-03T17:37:58.783+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.786+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.794+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_131', 'last_updated': datetime.datetime(2026, 3, 1, 1, 30, 28, 912970, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_376", "prod_251", "prod_187", "prod_131", "prod_56"]'}
+[2026-03-03T17:37:58.796+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.798+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.803+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_132', 'last_updated': datetime.datetime(2026, 2, 28, 12, 18, 49, 500670, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_294", "prod_443", "prod_122", "prod_455", "prod_365", "prod_451"]'}
+[2026-03-03T17:37:58.805+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.807+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.811+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_133', 'last_updated': datetime.datetime(2026, 2, 25, 16, 58, 12, 894350, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_455", "prod_31", "prod_81", "prod_69", "prod_239", "prod_218"]'}
+[2026-03-03T17:37:58.812+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.813+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.821+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_134', 'last_updated': datetime.datetime(2026, 2, 27, 19, 28, 56, 506629, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_292", "prod_327", "prod_170", "prod_65", "prod_448"]'}
+[2026-03-03T17:37:58.822+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.823+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.828+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_135', 'last_updated': datetime.datetime(2026, 2, 26, 6, 30, 46, 657913, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_250", "prod_14", "prod_287", "prod_329", "prod_322", "prod_33", "prod_311", "prod_470", "prod_121"]'}
+[2026-03-03T17:37:58.829+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.830+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.834+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_136', 'last_updated': datetime.datetime(2026, 2, 26, 14, 41, 54, 384799, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_301", "prod_404", "prod_220", "prod_197", "prod_206", "prod_382", "prod_62"]'}
+[2026-03-03T17:37:58.835+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.836+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.841+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_137', 'last_updated': datetime.datetime(2026, 2, 25, 23, 22, 43, 558550, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_423", "prod_60", "prod_277", "prod_102", "prod_257", "prod_401", "prod_352", "prod_305"]'}
+[2026-03-03T17:37:58.842+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.844+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.848+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_138', 'last_updated': datetime.datetime(2026, 3, 1, 22, 55, 25, 181618, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_343", "prod_390", "prod_473", "prod_473", "prod_232", "prod_303", "prod_486", "prod_204"]'}
+[2026-03-03T17:37:58.851+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.854+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.862+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_139', 'last_updated': datetime.datetime(2026, 2, 26, 22, 1, 14, 688032, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_67", "prod_436", "prod_481", "prod_434", "prod_333"]'}
+[2026-03-03T17:37:58.863+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.864+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.869+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_140', 'last_updated': datetime.datetime(2026, 2, 26, 3, 10, 40, 311545, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_121", "prod_305", "prod_16", "prod_257", "prod_350", "prod_399", "prod_352", "prod_118", "prod_380"]'}
+[2026-03-03T17:37:58.871+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.874+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.881+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_141', 'last_updated': datetime.datetime(2026, 3, 3, 3, 18, 32, 456371, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_418", "prod_5", "prod_288", "prod_143", "prod_28", "prod_475", "prod_387"]'}
+[2026-03-03T17:37:58.882+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.882+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.887+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_142', 'last_updated': datetime.datetime(2026, 2, 28, 22, 25, 51, 848370, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_338", "prod_438", "prod_160", "prod_469", "prod_104", "prod_89", "prod_190"]'}
+[2026-03-03T17:37:58.888+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.889+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.895+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_143', 'last_updated': datetime.datetime(2026, 3, 1, 1, 12, 41, 502533, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_214", "prod_97", "prod_448", "prod_492", "prod_42", "prod_309", "prod_174", "prod_357", "prod_192", "prod_262"]'}
+[2026-03-03T17:37:58.895+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.896+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.901+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_144', 'last_updated': datetime.datetime(2026, 3, 2, 20, 42, 7, 531150, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_193", "prod_110", "prod_230", "prod_147", "prod_228", "prod_44", "prod_89", "prod_108", "prod_186"]'}
+[2026-03-03T17:37:58.902+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.902+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.907+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_145', 'last_updated': datetime.datetime(2026, 2, 27, 14, 50, 25, 174430, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_206", "prod_319", "prod_11", "prod_245", "prod_384", "prod_11", "prod_429", "prod_455", "prod_203"]'}
+[2026-03-03T17:37:58.909+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.910+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.916+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_146', 'last_updated': datetime.datetime(2026, 2, 25, 21, 29, 51, 406116, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_467", "prod_78", "prod_159", "prod_48"]'}
+[2026-03-03T17:37:58.918+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.920+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.924+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_147', 'last_updated': datetime.datetime(2026, 2, 27, 22, 19, 26, 430445, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_16", "prod_324", "prod_111", "prod_319", "prod_474", "prod_64", "prod_435", "prod_491", "prod_243", "prod_483"]'}
+[2026-03-03T17:37:58.925+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.926+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.930+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_148', 'last_updated': datetime.datetime(2026, 2, 25, 8, 41, 43, 754946, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_358", "prod_26", "prod_440", "prod_145", "prod_269", "prod_78"]'}
+[2026-03-03T17:37:58.931+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.932+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.936+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_149', 'last_updated': datetime.datetime(2026, 3, 2, 5, 56, 1, 183925, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_25", "prod_45", "prod_155", "prod_247", "prod_109", "prod_243", "prod_449", "prod_339", "prod_148"]'}
+[2026-03-03T17:37:58.937+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.939+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.944+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_150', 'last_updated': datetime.datetime(2026, 2, 27, 11, 14, 40, 680620, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_467", "prod_281", "prod_275"]'}
+[2026-03-03T17:37:58.945+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.946+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.951+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_151', 'last_updated': datetime.datetime(2026, 3, 2, 14, 52, 27, 943674, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_369", "prod_315", "prod_64", "prod_326", "prod_40", "prod_268", "prod_344", "prod_295", "prod_161", "prod_127"]'}
+[2026-03-03T17:37:58.952+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.954+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.960+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_152', 'last_updated': datetime.datetime(2026, 2, 28, 6, 35, 15, 400174, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_423", "prod_323", "prod_175"]'}
+[2026-03-03T17:37:58.961+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.962+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.969+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_153', 'last_updated': datetime.datetime(2026, 2, 27, 15, 0, 53, 68950, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_469", "prod_380", "prod_411"]'}
+[2026-03-03T17:37:58.971+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.972+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.980+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_154', 'last_updated': datetime.datetime(2026, 3, 3, 4, 51, 21, 795645, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_456", "prod_394", "prod_423", "prod_177", "prod_126", "prod_24"]'}
+[2026-03-03T17:37:58.981+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.982+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.987+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_155', 'last_updated': datetime.datetime(2026, 2, 26, 11, 22, 13, 191672, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_410", "prod_251", "prod_137"]'}
+[2026-03-03T17:37:58.988+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.989+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.993+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_156', 'last_updated': datetime.datetime(2026, 2, 27, 22, 19, 48, 523575, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_356", "prod_222", "prod_15", "prod_287", "prod_300", "prod_72"]'}
+[2026-03-03T17:37:58.994+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.995+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:58.998+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_157', 'last_updated': datetime.datetime(2026, 3, 2, 5, 28, 41, 247970, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_496", "prod_170", "prod_12", "prod_255", "prod_12", "prod_371", "prod_324"]'}
+[2026-03-03T17:37:58.999+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:58.999+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.005+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_158', 'last_updated': datetime.datetime(2026, 2, 25, 0, 3, 6, 768055, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_237", "prod_457", "prod_456", "prod_110"]'}
+[2026-03-03T17:37:59.007+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.008+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.015+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_159', 'last_updated': datetime.datetime(2026, 2, 25, 14, 43, 58, 349239, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_349", "prod_243", "prod_398"]'}
+[2026-03-03T17:37:59.016+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.017+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.022+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_160', 'last_updated': datetime.datetime(2026, 3, 1, 22, 52, 21, 754459, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_366", "prod_36", "prod_71", "prod_303", "prod_438", "prod_162", "prod_235"]'}
+[2026-03-03T17:37:59.023+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.023+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.028+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_161', 'last_updated': datetime.datetime(2026, 2, 27, 23, 0, 33, 927651, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_302", "prod_72", "prod_378"]'}
+[2026-03-03T17:37:59.028+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.029+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.033+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_162', 'last_updated': datetime.datetime(2026, 2, 25, 20, 15, 9, 15323, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_498", "prod_399", "prod_6", "prod_113", "prod_384", "prod_418", "prod_430", "prod_404", "prod_23"]'}
+[2026-03-03T17:37:59.034+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.035+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.040+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_163', 'last_updated': datetime.datetime(2026, 2, 27, 6, 51, 41, 166160, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_104", "prod_387", "prod_57", "prod_316", "prod_207"]'}
+[2026-03-03T17:37:59.041+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.042+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.046+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_164', 'last_updated': datetime.datetime(2026, 2, 25, 4, 5, 37, 489145, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_403", "prod_410", "prod_307", "prod_30", "prod_487"]'}
+[2026-03-03T17:37:59.047+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.048+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.052+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_165', 'last_updated': datetime.datetime(2026, 2, 26, 17, 7, 29, 814069, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_162", "prod_409", "prod_296", "prod_107", "prod_190"]'}
+[2026-03-03T17:37:59.053+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.053+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.057+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_166', 'last_updated': datetime.datetime(2026, 2, 28, 4, 12, 22, 728178, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_295", "prod_101", "prod_283", "prod_205", "prod_117", "prod_362"]'}
+[2026-03-03T17:37:59.058+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.058+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.062+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_167', 'last_updated': datetime.datetime(2026, 3, 1, 6, 21, 56, 983414, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_334", "prod_226", "prod_273", "prod_205"]'}
+[2026-03-03T17:37:59.063+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.064+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.068+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_168', 'last_updated': datetime.datetime(2026, 2, 27, 12, 24, 3, 533156, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_463", "prod_430", "prod_23", "prod_392", "prod_332", "prod_460", "prod_317", "prod_375", "prod_374", "prod_389"]'}
+[2026-03-03T17:37:59.068+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.069+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.073+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_169', 'last_updated': datetime.datetime(2026, 2, 25, 23, 21, 10, 946754, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_484", "prod_483", "prod_299", "prod_253", "prod_335", "prod_242", "prod_81"]'}
+[2026-03-03T17:37:59.074+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.074+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.078+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_170', 'last_updated': datetime.datetime(2026, 3, 2, 11, 13, 33, 173620, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_43", "prod_461", "prod_9", "prod_431", "prod_10", "prod_490"]'}
+[2026-03-03T17:37:59.079+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.080+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.084+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_171', 'last_updated': datetime.datetime(2026, 2, 28, 0, 48, 31, 1860, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_154", "prod_149", "prod_12", "prod_31", "prod_298", "prod_294", "prod_416", "prod_85"]'}
+[2026-03-03T17:37:59.085+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.086+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.090+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_172', 'last_updated': datetime.datetime(2026, 2, 26, 21, 34, 38, 31967, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_479", "prod_221", "prod_406", "prod_196", "prod_362", "prod_426", "prod_426"]'}
+[2026-03-03T17:37:59.091+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.092+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.096+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_173', 'last_updated': datetime.datetime(2026, 2, 24, 22, 52, 26, 867339, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_383", "prod_487", "prod_13", "prod_416"]'}
+[2026-03-03T17:37:59.097+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.098+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.102+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_174', 'last_updated': datetime.datetime(2026, 3, 1, 11, 4, 49, 675524, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_392", "prod_415", "prod_198", "prod_7", "prod_50"]'}
+[2026-03-03T17:37:59.104+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.105+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.110+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_175', 'last_updated': datetime.datetime(2026, 3, 1, 21, 10, 56, 689821, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_362", "prod_325", "prod_370", "prod_305", "prod_139", "prod_277", "prod_17", "prod_202", "prod_247", "prod_399"]'}
+[2026-03-03T17:37:59.110+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.111+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.115+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_176', 'last_updated': datetime.datetime(2026, 3, 2, 5, 51, 52, 555524, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_297", "prod_390", "prod_197", "prod_90", "prod_454", "prod_39", "prod_468", "prod_383"]'}
+[2026-03-03T17:37:59.116+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.117+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.121+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_177', 'last_updated': datetime.datetime(2026, 2, 27, 2, 25, 19, 752875, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_359", "prod_354", "prod_371", "prod_386", "prod_237", "prod_18", "prod_185", "prod_416", "prod_498", "prod_300"]'}
+[2026-03-03T17:37:59.121+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.122+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.126+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_178', 'last_updated': datetime.datetime(2026, 2, 24, 18, 23, 11, 471076, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_378", "prod_441", "prod_415"]'}
+[2026-03-03T17:37:59.127+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.127+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.131+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_179', 'last_updated': datetime.datetime(2026, 2, 26, 0, 28, 14, 590873, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_117", "prod_133", "prod_110", "prod_338", "prod_378", "prod_396", "prod_228"]'}
+[2026-03-03T17:37:59.132+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.132+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.136+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_180', 'last_updated': datetime.datetime(2026, 2, 25, 2, 31, 12, 148561, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_7", "prod_283", "prod_377", "prod_323", "prod_347", "prod_9", "prod_210", "prod_269", "prod_93"]'}
+[2026-03-03T17:37:59.136+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.137+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.146+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_181', 'last_updated': datetime.datetime(2026, 2, 26, 1, 57, 42, 571126, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_48", "prod_456", "prod_27", "prod_382", "prod_23", "prod_104", "prod_487", "prod_165", "prod_236"]'}
+[2026-03-03T17:37:59.153+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.159+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.169+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_182', 'last_updated': datetime.datetime(2026, 3, 1, 19, 20, 27, 771248, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_171", "prod_388", "prod_102", "prod_160", "prod_193", "prod_40", "prod_164", "prod_413", "prod_484"]'}
+[2026-03-03T17:37:59.170+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.172+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.183+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_183', 'last_updated': datetime.datetime(2026, 2, 25, 5, 23, 13, 922625, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_493", "prod_59", "prod_399", "prod_20", "prod_350", "prod_348", "prod_95", "prod_439", "prod_375", "prod_308"]'}
+[2026-03-03T17:37:59.184+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.186+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.193+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_184', 'last_updated': datetime.datetime(2026, 2, 27, 5, 29, 27, 76157, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_30", "prod_456", "prod_364", "prod_27", "prod_84", "prod_311", "prod_482"]'}
+[2026-03-03T17:37:59.194+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.196+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.204+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_185', 'last_updated': datetime.datetime(2026, 2, 26, 23, 24, 12, 214159, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_136", "prod_78", "prod_341", "prod_418", "prod_394", "prod_387", "prod_187"]'}
+[2026-03-03T17:37:59.205+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.206+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.211+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_186', 'last_updated': datetime.datetime(2026, 3, 2, 16, 39, 23, 462146, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_32", "prod_268", "prod_163", "prod_487", "prod_386", "prod_453", "prod_471", "prod_162", "prod_192", "prod_123"]'}
+[2026-03-03T17:37:59.212+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.214+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.219+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_187', 'last_updated': datetime.datetime(2026, 3, 1, 20, 24, 36, 977532, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_336", "prod_374", "prod_266", "prod_45", "prod_196", "prod_129", "prod_82"]'}
+[2026-03-03T17:37:59.220+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.222+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.226+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_188', 'last_updated': datetime.datetime(2026, 2, 27, 4, 56, 26, 306504, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_191", "prod_17", "prod_494", "prod_111", "prod_2", "prod_300", "prod_202", "prod_360"]'}
+[2026-03-03T17:37:59.227+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.228+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.255+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_189', 'last_updated': datetime.datetime(2026, 2, 25, 0, 29, 43, 302171, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_382", "prod_309", "prod_229", "prod_414"]'}
+[2026-03-03T17:37:59.259+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.261+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.267+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_190', 'last_updated': datetime.datetime(2026, 3, 2, 17, 40, 58, 225784, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_356", "prod_145", "prod_205", "prod_12", "prod_33", "prod_438", "prod_242"]'}
+[2026-03-03T17:37:59.268+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.269+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.273+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_191', 'last_updated': datetime.datetime(2026, 3, 2, 3, 31, 1, 74997, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_40", "prod_296", "prod_42", "prod_446", "prod_96", "prod_436", "prod_301", "prod_293", "prod_500"]'}
+[2026-03-03T17:37:59.274+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.275+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.288+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_192', 'last_updated': datetime.datetime(2026, 2, 26, 8, 40, 29, 96656, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_160", "prod_362", "prod_459", "prod_368"]'}
+[2026-03-03T17:37:59.289+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.290+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.294+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_193', 'last_updated': datetime.datetime(2026, 2, 24, 21, 47, 28, 245499, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_59", "prod_438", "prod_301", "prod_412"]'}
+[2026-03-03T17:37:59.295+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.296+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.299+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_194', 'last_updated': datetime.datetime(2026, 3, 1, 3, 22, 27, 952179, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_364", "prod_426", "prod_482", "prod_458", "prod_65", "prod_498", "prod_329"]'}
+[2026-03-03T17:37:59.300+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.301+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.306+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_195', 'last_updated': datetime.datetime(2026, 3, 1, 6, 59, 7, 616115, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_39", "prod_226", "prod_426", "prod_217", "prod_14", "prod_34", "prod_195", "prod_192", "prod_373", "prod_303"]'}
+[2026-03-03T17:37:59.306+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.307+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.311+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_196', 'last_updated': datetime.datetime(2026, 2, 28, 3, 3, 28, 825076, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_356", "prod_433", "prod_416", "prod_73", "prod_163", "prod_100", "prod_499"]'}
+[2026-03-03T17:37:59.312+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.313+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.318+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_197', 'last_updated': datetime.datetime(2026, 2, 28, 11, 19, 20, 51884, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_149", "prod_255", "prod_69", "prod_491", "prod_162", "prod_380", "prod_130", "prod_192", "prod_201", "prod_27"]'}
+[2026-03-03T17:37:59.322+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.323+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.327+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_198', 'last_updated': datetime.datetime(2026, 2, 26, 5, 33, 54, 793960, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_444", "prod_374", "prod_427", "prod_120", "prod_304", "prod_479"]'}
+[2026-03-03T17:37:59.329+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.329+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.333+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_199', 'last_updated': datetime.datetime(2026, 2, 24, 19, 23, 50, 156060, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_122", "prod_133", "prod_145", "prod_254", "prod_474", "prod_399", "prod_71", "prod_275"]'}
+[2026-03-03T17:37:59.334+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.335+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:59.340+0000] {sql.py:457} INFO - Running statement: INSERT INTO log_raw.route_recommendations_raw (user_id, recommended_routes, last_updated, updated_at)
+        VALUES (%(user_id)s, %(recommended_routes)s::jsonb, %(last_updated)s, NOW())
+        ON CONFLICT (user_id) DO UPDATE SET recommended_routes=EXCLUDED.recommended_routes, last_updated=EXCLUDED.last_updated, updated_at=NOW();, parameters: {'user_id': 'user_200', 'last_updated': datetime.datetime(2026, 2, 28, 21, 8, 34, 936740, tzinfo=datetime.timezone.utc), 'recommended_routes': '["prod_304", "prod_266", "prod_479"]'}
+[2026-03-03T17:37:59.341+0000] {sql.py:466} INFO - Rows affected: 1
+[2026-03-03T17:37:59.343+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-03-03T17:37:59.344+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-03T17:37:59.356+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=logistics_sync, task_id=ingest_routes, execution_date=20260303T160000, start_date=20260303T173757, end_date=20260303T173759
+[2026-03-03T17:37:59.403+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-03-03T17:37:59.436+0000] {taskinstance.py:3482} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-03T17:37:59.437+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

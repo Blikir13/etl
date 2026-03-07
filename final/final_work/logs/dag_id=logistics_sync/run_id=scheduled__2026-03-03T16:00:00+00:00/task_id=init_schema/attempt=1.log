@@ -1,0 +1,45 @@
+[2026-03-03T17:37:14.402+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-03T17:37:14.427+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: logistics_sync.init_schema scheduled__2026-03-03T16:00:00+00:00 [queued]>
+[2026-03-03T17:37:14.433+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: logistics_sync.init_schema scheduled__2026-03-03T16:00:00+00:00 [queued]>
+[2026-03-03T17:37:14.434+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 2
+[2026-03-03T17:37:14.442+0000] {taskinstance.py:2327} INFO - Executing <Task(PythonOperator): init_schema> on 2026-03-03 16:00:00+00:00
+[2026-03-03T17:37:14.471+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'logistics_sync', 'init_schema', 'scheduled__2026-03-03T16:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/logistics_sync_dag.py', '--cfg-path', '/tmp/tmp08tz8h9q']
+[2026-03-03T17:37:14.483+0000] {standard_task_runner.py:91} INFO - Job 2: Subtask init_schema
+[2026-03-03T17:37:14.487+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=46) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-03-03T17:37:14.488+0000] {standard_task_runner.py:63} INFO - Started process 56 to run task
+[2026-03-03T17:37:14.579+0000] {task_command.py:426} INFO - Running <TaskInstance: logistics_sync.init_schema scheduled__2026-03-03T16:00:00+00:00 [running]> on host 0123928c5be5
+[2026-03-03T17:37:14.665+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='xxx' AIRFLOW_CTX_DAG_ID='logistics_sync' AIRFLOW_CTX_TASK_ID='init_schema' AIRFLOW_CTX_EXECUTION_DATE='2026-03-03T16:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-03T16:00:00+00:00'
+[2026-03-03T17:37:14.667+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-03T17:37:14.688+0000] {crypto.py:82} WARNING - empty cryptography key - values will not be stored encrypted.
+[2026-03-03T17:37:14.689+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:14.693+0000] {sql.py:457} INFO - Running statement: CREATE SCHEMA IF NOT EXISTS log_raw;, parameters: None
+[2026-03-03T17:37:14.694+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:14.697+0000] {sql.py:457} INFO - Running statement: CREATE TABLE IF NOT EXISTS log_raw.delivery_sessions_raw (
+            session_id TEXT PRIMARY KEY, user_id TEXT NOT NULL, start_time TIMESTAMPTZ NOT NULL,
+            end_time TIMESTAMPTZ NOT NULL, session_duration_seconds INTEGER NOT NULL,
+            route_points JSONB, device JSONB, driver_actions JSONB,
+            created_at TIMESTAMPTZ DEFAULT NOW(), updated_at TIMESTAMPTZ DEFAULT NOW());, parameters: None
+[2026-03-03T17:37:14.702+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:14.705+0000] {sql.py:457} INFO - Running statement: CREATE TABLE IF NOT EXISTS log_raw.delivery_events_raw (
+            event_id TEXT PRIMARY KEY, timestamp TIMESTAMPTZ NOT NULL, event_type TEXT NOT NULL,
+            details JSONB, created_at TIMESTAMPTZ DEFAULT NOW(), updated_at TIMESTAMPTZ DEFAULT NOW());, parameters: None
+[2026-03-03T17:37:14.709+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:14.712+0000] {sql.py:457} INFO - Running statement: CREATE TABLE IF NOT EXISTS log_raw.delivery_tickets_raw (
+            ticket_id TEXT PRIMARY KEY, user_id TEXT NOT NULL, status TEXT NOT NULL, issue_type TEXT NOT NULL,
+            messages JSONB, created_at TIMESTAMPTZ NOT NULL, updated_at TIMESTAMPTZ NOT NULL,
+            resolution_time_seconds INTEGER, messages_count INTEGER);, parameters: None
+[2026-03-03T17:37:14.715+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:14.719+0000] {sql.py:457} INFO - Running statement: CREATE TABLE IF NOT EXISTS log_raw.route_recommendations_raw (
+            user_id TEXT PRIMARY KEY, recommended_routes JSONB, last_updated TIMESTAMPTZ NOT NULL,
+            created_at TIMESTAMPTZ DEFAULT NOW(), updated_at TIMESTAMPTZ DEFAULT NOW());, parameters: None
+[2026-03-03T17:37:14.723+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:37:14.726+0000] {sql.py:457} INFO - Running statement: CREATE TABLE IF NOT EXISTS log_raw.quality_checks_raw (
+            review_id TEXT PRIMARY KEY, user_id TEXT NOT NULL, object_id TEXT NOT NULL, review_text TEXT,
+            rating INTEGER, moderation_status TEXT, flags JSONB, submitted_at TIMESTAMPTZ NOT NULL,
+            created_at TIMESTAMPTZ DEFAULT NOW(), updated_at TIMESTAMPTZ DEFAULT NOW());, parameters: None
+[2026-03-03T17:37:14.730+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-03-03T17:37:14.730+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-03T17:37:14.737+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=logistics_sync, task_id=init_schema, execution_date=20260303T160000, start_date=20260303T173714, end_date=20260303T173714
+[2026-03-03T17:37:14.758+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-03-03T17:37:14.788+0000] {taskinstance.py:3482} INFO - 5 downstream tasks scheduled from follow-on schedule check
+[2026-03-03T17:37:14.789+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

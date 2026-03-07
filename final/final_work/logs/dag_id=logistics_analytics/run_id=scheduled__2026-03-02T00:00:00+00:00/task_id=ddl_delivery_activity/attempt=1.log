@@ -1,0 +1,35 @@
+[2026-03-03T17:42:19.952+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-03T17:42:20.023+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: logistics_analytics.ddl_delivery_activity scheduled__2026-03-02T00:00:00+00:00 [queued]>
+[2026-03-03T17:42:20.026+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: logistics_analytics.ddl_delivery_activity scheduled__2026-03-02T00:00:00+00:00 [queued]>
+[2026-03-03T17:42:20.026+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 2
+[2026-03-03T17:42:20.036+0000] {taskinstance.py:2327} INFO - Executing <Task(PostgresOperator): ddl_delivery_activity> on 2026-03-02 00:00:00+00:00
+[2026-03-03T17:42:20.044+0000] {standard_task_runner.py:63} INFO - Started process 160 to run task
+[2026-03-03T17:42:20.046+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'logistics_analytics', 'ddl_delivery_activity', 'scheduled__2026-03-02T00:00:00+00:00', '--job-id', '8', '--raw', '--subdir', 'DAGS_FOLDER/logistics_analytics_dag.py', '--cfg-path', '/tmp/tmp68qhaq_9']
+[2026-03-03T17:42:20.048+0000] {standard_task_runner.py:91} INFO - Job 8: Subtask ddl_delivery_activity
+[2026-03-03T17:42:20.086+0000] {task_command.py:426} INFO - Running <TaskInstance: logistics_analytics.ddl_delivery_activity scheduled__2026-03-02T00:00:00+00:00 [running]> on host 0123928c5be5
+[2026-03-03T17:42:20.138+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='xxx' AIRFLOW_CTX_DAG_ID='logistics_analytics' AIRFLOW_CTX_TASK_ID='ddl_delivery_activity' AIRFLOW_CTX_EXECUTION_DATE='2026-03-02T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-02T00:00:00+00:00'
+[2026-03-03T17:42:20.139+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-03T17:42:20.149+0000] {sql.py:276} INFO - Executing: 
+        CREATE SCHEMA IF NOT EXISTS log_marts;
+        CREATE TABLE IF NOT EXISTS log_marts.delivery_activity_daily (
+            activity_date DATE NOT NULL, user_id TEXT NOT NULL, deliveries_count INTEGER NOT NULL,
+            avg_delivery_duration_minutes NUMERIC(12, 2), delayed_or_failed_deliveries INTEGER,
+            night_deliveries_count INTEGER, PRIMARY KEY (activity_date, user_id));
+        
+[2026-03-03T17:42:20.152+0000] {crypto.py:82} WARNING - empty cryptography key - values will not be stored encrypted.
+[2026-03-03T17:42:20.152+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:42:20.213+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:42:20.220+0000] {sql.py:457} INFO - Running statement: 
+        CREATE SCHEMA IF NOT EXISTS log_marts;
+        CREATE TABLE IF NOT EXISTS log_marts.delivery_activity_daily (
+            activity_date DATE NOT NULL, user_id TEXT NOT NULL, deliveries_count INTEGER NOT NULL,
+            avg_delivery_duration_minutes NUMERIC(12, 2), delayed_or_failed_deliveries INTEGER,
+            night_deliveries_count INTEGER, PRIMARY KEY (activity_date, user_id));
+        , parameters: None
+[2026-03-03T17:42:20.233+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py:407 AirflowProviderDeprecationWarning: Call to deprecated method _make_common_data_structure. (The `_make_serializable` method is deprecated and support will be removed in a future version of the common.sql provider. Please update the DbApiHook's provider to a version based on common.sql >= 1.9.1.)
+[2026-03-03T17:42:20.235+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-03T17:42:20.243+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=logistics_analytics, task_id=ddl_delivery_activity, execution_date=20260302T000000, start_date=20260303T174220, end_date=20260303T174220
+[2026-03-03T17:42:20.275+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-03-03T17:42:20.290+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:1296 AirflowProviderDeprecationWarning: Call to deprecated class PostgresOperator. (Please use `airflow.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.Also, you can provide `hook_params={'schema': <database>}`.)
+[2026-03-03T17:42:20.299+0000] {taskinstance.py:3482} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-03T17:42:20.301+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

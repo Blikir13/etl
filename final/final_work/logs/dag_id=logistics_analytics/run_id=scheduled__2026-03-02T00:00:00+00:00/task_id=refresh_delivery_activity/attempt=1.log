@@ -1,0 +1,50 @@
+[2026-03-03T17:42:22.444+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-03T17:42:22.504+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: logistics_analytics.refresh_delivery_activity scheduled__2026-03-02T00:00:00+00:00 [queued]>
+[2026-03-03T17:42:22.508+0000] {taskinstance.py:2073} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: logistics_analytics.refresh_delivery_activity scheduled__2026-03-02T00:00:00+00:00 [queued]>
+[2026-03-03T17:42:22.508+0000] {taskinstance.py:2303} INFO - Starting attempt 1 of 2
+[2026-03-03T17:42:22.513+0000] {taskinstance.py:2327} INFO - Executing <Task(PostgresOperator): refresh_delivery_activity> on 2026-03-02 00:00:00+00:00
+[2026-03-03T17:42:22.520+0000] {standard_task_runner.py:63} INFO - Started process 169 to run task
+[2026-03-03T17:42:22.521+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'logistics_analytics', 'refresh_delivery_activity', 'scheduled__2026-03-02T00:00:00+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/logistics_analytics_dag.py', '--cfg-path', '/tmp/tmp4armgt77']
+[2026-03-03T17:42:22.523+0000] {standard_task_runner.py:91} INFO - Job 9: Subtask refresh_delivery_activity
+[2026-03-03T17:42:22.557+0000] {task_command.py:426} INFO - Running <TaskInstance: logistics_analytics.refresh_delivery_activity scheduled__2026-03-02T00:00:00+00:00 [running]> on host 0123928c5be5
+[2026-03-03T17:42:22.610+0000] {taskinstance.py:2644} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='xxx' AIRFLOW_CTX_DAG_ID='logistics_analytics' AIRFLOW_CTX_TASK_ID='refresh_delivery_activity' AIRFLOW_CTX_EXECUTION_DATE='2026-03-02T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-02T00:00:00+00:00'
+[2026-03-03T17:42:22.611+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-03T17:42:22.622+0000] {sql.py:276} INFO - Executing: 
+        DELETE FROM log_marts.delivery_activity_daily WHERE activity_date = '2026-03-02'::date;
+        INSERT INTO log_marts.delivery_activity_daily (
+            activity_date, user_id, deliveries_count, avg_delivery_duration_minutes,
+            delayed_or_failed_deliveries, night_deliveries_count)
+        SELECT s.start_time::date, s.user_id, COUNT(*),
+            AVG(s.session_duration_seconds)::NUMERIC(12, 2) / 60.0,
+            COALESCE(SUM(CASE WHEN e.event_type IN ('error', 'failed', 'delayed') THEN 1 ELSE 0 END), 0),
+            SUM(CASE WHEN EXTRACT(HOUR FROM s.start_time) BETWEEN 22 AND 23 OR EXTRACT(HOUR FROM s.start_time) BETWEEN 0 AND 5 THEN 1 ELSE 0 END)
+        FROM log_raw.delivery_sessions_raw s
+        LEFT JOIN log_raw.delivery_events_raw e ON e.timestamp::date = s.start_time::date AND e.event_type IN ('error', 'failed', 'delayed')
+        WHERE s.start_time::date = '2026-03-02'::date
+        GROUP BY s.start_time::date, s.user_id;
+        
+[2026-03-03T17:42:22.624+0000] {crypto.py:82} WARNING - empty cryptography key - values will not be stored encrypted.
+[2026-03-03T17:42:22.624+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:42:22.656+0000] {base.py:84} INFO - Using connection ID 'postgres_analytics' for task execution.
+[2026-03-03T17:42:22.661+0000] {sql.py:457} INFO - Running statement: 
+        DELETE FROM log_marts.delivery_activity_daily WHERE activity_date = '2026-03-02'::date;
+        INSERT INTO log_marts.delivery_activity_daily (
+            activity_date, user_id, deliveries_count, avg_delivery_duration_minutes,
+            delayed_or_failed_deliveries, night_deliveries_count)
+        SELECT s.start_time::date, s.user_id, COUNT(*),
+            AVG(s.session_duration_seconds)::NUMERIC(12, 2) / 60.0,
+            COALESCE(SUM(CASE WHEN e.event_type IN ('error', 'failed', 'delayed') THEN 1 ELSE 0 END), 0),
+            SUM(CASE WHEN EXTRACT(HOUR FROM s.start_time) BETWEEN 22 AND 23 OR EXTRACT(HOUR FROM s.start_time) BETWEEN 0 AND 5 THEN 1 ELSE 0 END)
+        FROM log_raw.delivery_sessions_raw s
+        LEFT JOIN log_raw.delivery_events_raw e ON e.timestamp::date = s.start_time::date AND e.event_type IN ('error', 'failed', 'delayed')
+        WHERE s.start_time::date = '2026-03-02'::date
+        GROUP BY s.start_time::date, s.user_id;
+        , parameters: None
+[2026-03-03T17:42:22.664+0000] {sql.py:466} INFO - Rows affected: 36
+[2026-03-03T17:42:22.669+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py:407 AirflowProviderDeprecationWarning: Call to deprecated method _make_common_data_structure. (The `_make_serializable` method is deprecated and support will be removed in a future version of the common.sql provider. Please update the DbApiHook's provider to a version based on common.sql >= 1.9.1.)
+[2026-03-03T17:42:22.670+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-03T17:42:22.675+0000] {taskinstance.py:1205} INFO - Marking task as SUCCESS. dag_id=logistics_analytics, task_id=refresh_delivery_activity, execution_date=20260302T000000, start_date=20260303T174222, end_date=20260303T174222
+[2026-03-03T17:42:22.701+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-03-03T17:42:22.711+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:1296 AirflowProviderDeprecationWarning: Call to deprecated class PostgresOperator. (Please use `airflow.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.Also, you can provide `hook_params={'schema': <database>}`.)
+[2026-03-03T17:42:22.718+0000] {taskinstance.py:3482} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-03T17:42:22.719+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
